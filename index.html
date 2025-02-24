@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manonjaya Literasi - Membangun Literasi, Menciptakan Perubahan</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Alpine.js -->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <!-- Swiper.js -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    
+    <!-- AOS.js -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <style>
+        :root {
+            --color-primary: #1E3A8A;
+            --color-secondary: #FACC15;
+            --color-light: #F8FAFC;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Merriweather', serif;
+        }
+        
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        
+        .neumorphism {
+            box-shadow: 5px 5px 10px #d1d1d1,
+                       -5px -5px 10px #ffffff;
+        }
+    </style>
+</head>
+<body class="bg-slate-50">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-white shadow-md">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="flex items-center space-x-2">
+                    <img src="logo (2).png" alt="Logo" class="h-8">
+                    <span class="text-xl font-bold text-blue-900">Manonjaya Literasi</span>
+                </a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#" class="text-gray-700 hover:text-blue-900">Beranda</a>
+                    <a href="about.html" class="text-gray-700 hover:text-blue-900">Tentang</a>
+                    <a href="program.html" class="text-gray-700 hover:text-blue-900">Program</a>
+                    <a href="blog.html" class="text-gray-700 hover:text-blue-900">Blog</a>
+                    <a href="kontak.html" class="text-gray-700 hover:text-blue-900">Kontak</a>
+                </div>
+                <button class="md:hidden text-gray-700" x-data="{ open: false }" @click="open = !open">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="beranda" class="min-h-screen relative flex items-center justify-center">
+        <div class="absolute inset-0">
+            <img src="membaca.jpg" alt="Hero Background" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-blue-900/70"></div>
+        </div>
+        <div class="relative container mx-auto px-4 text-center text-white" data-aos="fade-up">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">Membangun Literasi,<br>Menciptakan Perubahan</h1>
+            <p class="text-xl md:text-2xl mb-8">Gabung bersama kami untuk meningkatkan budaya literasi di Indonesia</p>
+            <div class="flex flex-col md:flex-row justify-center gap-4">
+                <a href="program.html" class="px-8 py-3 bg-yellow-400 text-blue-900 rounded-full font-semibold hover:bg-yellow-300 transition duration-300">Jelajahi</a>
+                <a href="kontak.html" class="px-8 py-3 border-2 border-white rounded-full font-semibold hover:bg-white hover:text-blue-900 transition duration-300">Gabung Sekarang</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="tentang" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-6">Mengenal Lebih Dekat Manonjaya Literasi</h2>
+                    <p class="text-gray-600 text-justify mb-8">Kami adalah komunitas pemuda yang berkomitmen untuk membangun budaya literasi di Indonesia, khususnya di wilayah Manonjaya dan sekitarnya.</p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="p-3 bg-blue-100 rounded-lg transform transition hover:scale-110">
+                                <i class="fas fa-book-reader text-2xl text-blue-900"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-xl mb-2">Visi</h3>
+                                <p class="text-gray-600">Menjadi pusat pengembangan literasi yang inovatif dan inspiratif di Indonesia.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="p-3 bg-yellow-100 rounded-lg transform transition hover:scale-110">
+                                <i class="fas fa-bullseye text-2xl text-yellow-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-xl mb-2">Misi</h3>
+                                <p class="text-gray-600">Mengembangkan program literasi yang kreatif dan berkelanjutan untuk semua kalangan.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="p-3 bg-blue-100 rounded-lg transform transition hover:scale-110">
+                                <i class="fas fa-heart text-2xl text-blue-900"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-xl mb-2">Nilai</h3>
+                                <p class="text-gray-600">Kreativitas, Kolaborasi, dan Keberlanjutan dalam setiap program yang kami jalankan.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative" data-aos="fade-left">
+                    <img src="diskusi.jpg" alt="Diskusi Literasi" class="w-full h-[500px] object-cover rounded-lg shadow-xl">
+                    <div class="absolute inset-0 bg-gradient-to-t from-blue-900/50 to-transparent rounded-lg"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section id="program" class="py-20 bg-slate-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-4">Program & Kegiatan</h2>
+                <p class="text-gray-600">Berbagai program literasi yang kami kembangkan untuk masyarakat</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl p-6 neumorphism transform transition duration-300 hover:scale-105" data-aos="fade-up" data-aos-delay="100">
+                    <img src="workshop.jpg" alt="Workshop Literasi" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <h3 class="text-xl font-bold text-blue-900 mb-2">Workshop Literasi</h3>
+                    <p class="text-gray-600">Pelatihan menulis kreatif dan pengembangan kemampuan literasi untuk berbagai kalangan.</p>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 neumorphism transform transition duration-300 hover:scale-105" data-aos="fade-up" data-aos-delay="200">
+                    <img src="debat.jpg" alt="Debat Literasi" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <h3 class="text-xl font-bold text-blue-900 mb-2">Debat Literasi</h3>
+                    <p class="text-gray-600">Forum diskusi dan debat untuk mengembangkan kemampuan berpikir kritis.</p>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 neumorphism transform transition duration-300 hover:scale-105" data-aos="fade-up" data-aos-delay="300">
+                    <img src="puisi.jpg" alt="Festival Puisi" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <h3 class="text-xl font-bold text-blue-900 mb-2">Festival Puisi</h3>
+                    <p class="text-gray-600">Ajang kreativitas dan apresiasi karya sastra melalui pembacaan puisi.</p>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="program.html" class="inline-block px-8 py-3 bg-blue-900 text-white rounded-full font-semibold hover:bg-blue-800 transition duration-300 shadow-lg hover:shadow-xl">Daftar Program</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimoni" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-4">Testimoni & Mitra</h2>
+                <p class="text-gray-600">Apa kata mereka tentang program kami</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-xl glassmorphism transform transition duration-300 hover:scale-105" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center mb-4">
+                        <img src="https://i.pravatar.cc/150?img=1" alt="Testimonial 1" class="w-16 h-16 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold text-blue-900">Rina Wulandari</h4>
+                            <p class="text-gray-600 text-sm">Peserta Workshop Literasi</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"Program ini sangat membantu saya dalam mengembangkan kemampuan menulis. Materinya komprehensif dan fasilitatornya sangat supportif."</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl glassmorphism transform transition duration-300 hover:scale-105" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center mb-4">
+                        <img src="https://i.pravatar.cc/150?img=2" alt="Testimonial 2" class="w-16 h-16 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold text-blue-900">Budi Santoso</h4>
+                            <p class="text-gray-600 text-sm">Peserta Debat Literasi</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"Forum debat literasi membuka wawasan saya tentang pentingnya berpikir kritis dan berargumentasi dengan baik."</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl glassmorphism transform transition duration-300 hover:scale-105" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex items-center mb-4">
+                        <img src="https://i.pravatar.cc/150?img=3" alt="Testimonial 3" class="w-16 h-16 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold text-blue-900">Siti Aminah</h4>
+                            <p class="text-gray-600 text-sm">Peserta Festival Puisi</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"Festival puisi memberikan wadah bagi kami para pecinta sastra untuk mengekspresikan karya dan berbagi inspirasi."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="py-20 bg-slate-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-4">Blog & Artikel</h2>
+                <p class="text-gray-600">Temukan inspirasi dan wawasan baru seputar literasi</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <article class="bg-white rounded-xl overflow-hidden shadow-lg transform transition duration-300 hover:scale-105" data-aos="fade-up" data-aos-delay="100">
+                    <img src="pelatihan.jpg" alt="Blog 1" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="text-sm text-gray-500 mb-2">12 Juli 2023</div>
+                        <h3 class="text-xl font-bold text-blue-900 mb-2">Tips Menulis Kreatif untuk Pemula</h3>
+                        <p class="text-gray-600 mb-4">Pelajari dasar-dasar menulis kreatif dan temukan inspirasi untuk memulai perjalanan literasi Anda.</p>
+                        <a href="artikel1.html" class="text-blue-900 font-semibold hover:text-blue-700">Baca selengkapnya →</a>
+                    </div>
+                </article>
+                
+                <article class="bg-white rounded-xl overflow-hidden shadow-lg transform transition duration-300 hover:scale-105" data-aos="fade-up" data-aos-delay="200">
+                    <img src="diskusi.jpg" alt="Blog 2" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="text-sm text-gray-500 mb-2">10 Juli 2023</div>
+                        <h3 class="text-xl font-bold text-blue-900 mb-2">Pentingnya Literasi Digital di Era Modern</h3>
+                        <p class="text-gray-600 mb-4">Memahami peran literasi digital dalam kehidupan sehari-hari dan cara meningkatkannya.</p>
+                        <a href="artikel2.html" class="text-blue-900 font-semibold hover:text-blue-700">Baca selengkapnya →</a>
+                    </div>
+                </article>
+                
+                <article class="bg-white rounded-xl overflow-hidden shadow-lg transform transition duration-300 hover:scale-105" data-aos="fade-up" data-aos-delay="300">
+                    <img src="workshop.jpg" alt="Blog 3" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="text-sm text-gray-500 mb-2">8 Juli 2023</div>
+                        <h3 class="text-xl font-bold text-blue-900 mb-2">Membangun Komunitas Literasi yang Berkelanjutan</h3>
+                        <p class="text-gray-600 mb-4">Langkah-langkah membangun dan mempertahankan komunitas literasi yang aktif.</p>
+                        <a href="artikel3.html" class="text-blue-900 font-semibold hover:text-blue-700">Baca selengkapnya →</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="kontak" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-4">Hubungi Kami</h2>
+                <p class="text-gray-600">Tertarik bergabung atau memiliki pertanyaan? Jangan ragu untuk menghubungi kami.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-start">
+                <div class="bg-white rounded-xl p-8 neumorphism" data-aos="fade-right">
+                    <form class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="nama" class="block text-gray-700 font-medium mb-2">Nama Lengkap</label>
+                                <div class="relative">
+                                    <i class="fas fa-user absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                    <input type="text" id="nama" name="nama" class="w-full pl-12 pr-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300" placeholder="John Doe">
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+                                <div class="relative">
+                                    <i class="fas fa-envelope absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                    <input type="email" id="email" name="email" class="w-full pl-12 pr-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300" placeholder="email@example.com">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label for="subjek" class="block text-gray-700 font-medium mb-2">Subjek</label>
+                            <div class="relative">
+                                <i class="fas fa-tag absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                <input type="text" id="subjek" name="subjek" class="w-full pl-12 pr-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300" placeholder="Subjek pesan Anda">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label for="pesan" class="block text-gray-700 font-medium mb-2">Pesan</label>
+                            <div class="relative">
+                                <i class="fas fa-comment absolute left-4 top-4 text-gray-400"></i>
+                                <textarea id="pesan" name="pesan" rows="4" class="w-full pl-12 pr-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300" placeholder="Tulis pesan Anda di sini"></textarea>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="w-full px-8 py-4 bg-blue-900 text-white rounded-lg font-semibold hover:bg-blue-800 transition duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center justify-center space-x-2">
+                            <i class="fas fa-paper-plane"></i>
+                            <span>Kirim Pesan</span>
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="space-y-8" data-aos="fade-left">
+                    <div class="bg-white p-8 rounded-xl neumorphism">
+                        <div class="space-y-6">
+                            <div class="flex items-start space-x-4">
+                                <div class="p-3 bg-blue-100 rounded-lg">
+                                    <i class="fas fa-map-marker-alt text-2xl text-blue-900"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-xl mb-2">Alamat</h3>
+                                    <p class="text-gray-600">Jl. Raya Manonjaya No. 123<br>Tasikmalaya, Jawa Barat 46197</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="p-3 bg-yellow-100 rounded-lg">
+                                    <i class="fas fa-phone-alt text-2xl text-yellow-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-xl mb-2">Telepon</h3>
+                                    <p class="text-gray-600">+62 123 4567 890<br>+62 098 7654 321</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="p-3 bg-green-100 rounded-lg">
+                                    <i class="fas fa-envelope text-2xl text-green-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-xl mb-2">Email</h3>
+                                    <p class="text-gray-600">info@manlit.org<br>support@manlit.org</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 pt-8 border-t border-gray-200">
+                            <h3 class="font-bold text-xl mb-4">Ikuti Kami</h3>
+                            <div class="flex space-x-4">
+                                <a href="#" class="p-3 bg-blue-900 text-white rounded-lg hover:bg-blue-800 transition duration-300 transform hover:scale-110">
+                                    <i class="fab fa-facebook-f text-xl"></i>
+                                </a>
+                                <a href="#" class="p-3 bg-blue-900 text-white rounded-lg hover:bg-blue-800 transition duration-300 transform hover:scale-110">
+                                    <i class="fab fa-twitter text-xl"></i>
+                                </a>
+                                <a href="#" class="p-3 bg-blue-900 text-white rounded-lg hover:bg-blue-800 transition duration-300 transform hover:scale-110">
+                                    <i class="fab fa-instagram text-xl"></i>
+                                </a>
+                                <a href="#" class="p-3 bg-blue-900 text-white rounded-lg hover:bg-blue-800 transition duration-300 transform hover:scale-110">
+                                    <i class="fab fa-youtube text-xl"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-white py-16">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-12">
+                <!-- About Column -->
+                <div class="space-y-6">
+                    <h4 class="text-2xl font-bold mb-4">Manonjaya Literasi</h4>
+                    <p class="text-gray-300 leading-relaxed">Membangun literasi, menciptakan perubahan untuk Indonesia yang lebih baik melalui program-program inovatif dan berkelanjutan.</p>
+                    <div class="flex space-x-4 pt-4">
+                        <a href="#" class="bg-white/10 p-3 rounded-lg hover:bg-yellow-400 hover:text-blue-900 transition duration-300 transform hover:scale-110">
+                            <i class="fab fa-facebook-f text-xl"></i>
+                        </a>
+                        <a href="#" class="bg-white/10 p-3 rounded-lg hover:bg-yellow-400 hover:text-blue-900 transition duration-300 transform hover:scale-110">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="bg-white/10 p-3 rounded-lg hover:bg-yellow-400 hover:text-blue-900 transition duration-300 transform hover:scale-110">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="bg-white/10 p-3 rounded-lg hover:bg-yellow-400 hover:text-blue-900 transition duration-300 transform hover:scale-110">
+                            <i class="fab fa-youtube text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Tautan Cepat</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#beranda" class="text-gray-300 hover:text-yellow-400 transition duration-300 flex items-center"><i class="fas fa-chevron-right mr-2 text-sm"></i>Beranda</a></li>
+                        <li><a href="#tentang" class="text-gray-300 hover:text-yellow-400 transition duration-300 flex items-center"><i class="fas fa-chevron-right mr-2 text-sm"></i>Tentang Kami</a></li>
+                        <li><a href="#program" class="text-gray-300 hover:text-yellow-400 transition duration-300 flex items-center"><i class="fas fa-chevron-right mr-2 text-sm"></i>Program</a></li>
+                        <li><a href="#blog" class="text-gray-300 hover:text-yellow-400 transition duration-300 flex items-center"><i class="fas fa-chevron-right mr-2 text-sm"></i>Blog</a></li>
+                        <li><a href="#kontak" class="text-gray-300 hover:text-yellow-400 transition duration-300 flex items-center"><i class="fas fa-chevron-right mr-2 text-sm"></i>Kontak</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Informasi Kontak</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-map-marker-alt mt-1 text-yellow-400"></i>
+                            <span class="text-gray-300">Jl. Raya Manonjaya No. 123<br>Tasikmalaya, Jawa Barat 46197</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-phone-alt text-yellow-400"></i>
+                            <span class="text-gray-300">+62 123-456-7890</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-envelope text-yellow-400"></i>
+                            <span class="text-gray-300">info@manlit.org</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Newsletter</h4>
+                    <p class="text-gray-300 mb-4">Berlangganan newsletter kami untuk mendapatkan informasi terbaru.</p>
+                    <form class="space-y-3">
+                        <div class="relative">
+                            <input type="email" placeholder="Alamat Email" class="w-full px-4 py-3 bg-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 text-white placeholder-gray-400">
+                        </div>
+                        <button type="submit" class="w-full px-4 py-3 bg-yellow-400 text-blue-900 rounded-lg font-semibold hover:bg-yellow-300 transition duration-300 flex items-center justify-center space-x-2">
+                            <i class="fas fa-paper-plane"></i>
+                            <span>Berlangganan</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="border-t border-white/10 mt-12 pt-8">
+                <div class="grid md:grid-cols-2 gap-4 items-center">
+                    <p class="text-gray-400 text-center md:text-left">&copy; 2023 Manonjaya Literasi. All rights reserved.</p>
+                    <div class="flex justify-center md:justify-end space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-yellow-400 transition duration-300">Kebijakan Privasi</a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-400 transition duration-300">Syarat & Ketentuan</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        AOS.init({
+            duration: 1000,
+            easing: 'ease-in-out',
+            once: true
+        });
+    </script>
+</body>
+</html>

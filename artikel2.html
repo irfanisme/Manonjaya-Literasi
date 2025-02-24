@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tips Menulis Kreatif untuk Pemula - Manonjaya Literasi</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Alpine.js -->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <!-- AOS.js -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Merriweather', serif;
+        }
+        
+        .article-content {
+            line-height: 1.8;
+        }
+        
+        .article-content p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .neumorphism {
+            box-shadow: 5px 5px 10px #d1d1d1,
+                       -5px -5px 10px #ffffff;
+        }
+    </style>
+</head>
+<body class="bg-slate-50">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-white shadow-md">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="flex items-center space-x-2">
+                    <img src="logo (2).png" alt="Logo" class="h-8">
+                    <span class="text-xl font-bold text-blue-900">Manonjaya Literasi</span>
+                </a>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-gray-600 hover:text-blue-900">Beranda</a>
+                    <a href="about.html" class="text-gray-600 hover:text-blue-900">Tentang</a>
+                    <a href="program.html" class="text-gray-600 hover:text-blue-900">Program</a>
+                    <a href="blog.html" class="text-blue-900 font-semibold">Blog</a>
+                    <a href="kontak.html" class="text-gray-600 hover:text-blue-900">Kontak</a>
+                </div>
+                
+                <button class="md:hidden" x-data="{ open: false }" @click="open = !open">
+                    <i class="fas fa-bars text-2xl text-blue-900"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article Content -->
+    <main class="pt-24 pb-16">
+        <article class="container mx-auto px-4 max-w-4xl">
+            <!-- Article Header -->
+            <header class="mb-8" data-aos="fade-up">
+                <div class="flex items-center space-x-4 mb-4">
+                    <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">Tutorial</span>
+                    <span class="text-gray-500">12 Juli 2023</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold text-blue-900 mb-6">Tips Menulis Kreatif untuk Pemula</h1>
+                <div class="flex items-center space-x-4">
+                    <img src="https://i.pravatar.cc/40?img=1" alt="Ahmad Fadli" class="w-12 h-12 rounded-full">
+                    <div>
+                        <h3 class="font-semibold text-gray-900">Ahmad Fadli</h3>
+                        <p class="text-gray-500">Penulis Konten</p>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Featured Image -->
+            <div class="mb-12" data-aos="fade-up">
+                <img src="pelatihan.jpg" alt="Tips Menulis" class="w-full h-[400px] object-cover rounded-xl shadow-lg">
+            </div>
+
+            <!-- Article Content -->
+            <div class="article-content prose prose-lg max-w-none" data-aos="fade-up">
+                <p>
+                    Menulis kreatif adalah sebuah perjalanan yang menyenangkan dalam mengekspresikan diri dan berbagi cerita dengan dunia. Bagi para pemula, langkah pertama dalam menulis mungkin terasa menantang, tetapi dengan tips dan panduan yang tepat, Anda dapat memulai perjalanan literasi Anda dengan percaya diri.
+                </p>
+
+                <h2 class="text-2xl font-bold text-blue-900 mt-8 mb-4">1. Mulai dari Ide Sederhana</h2>
+                <p>
+                    Jangan merasa terbebani untuk menciptakan karya yang sempurna di awal. Mulailah dari ide-ide sederhana yang dekat dengan kehidupan sehari-hari. Pengalaman pribadi, pengamatan lingkungan sekitar, atau bahkan mimpi dapat menjadi sumber inspirasi yang baik untuk tulisan pertama Anda.
+                </p>
+
+                <h2 class="text-2xl font-bold text-blue-900 mt-8 mb-4">2. Buat Rutinitas Menulis</h2>
+                <p>
+                    Konsistensi adalah kunci dalam mengembangkan keterampilan menulis. Tetapkan waktu khusus setiap hari untuk menulis, meskipun hanya 15-30 menit. Buat jurnal harian atau blog pribadi sebagai wadah untuk melatih kemampuan menulis Anda.
+                </p>
+
+                <h2 class="text-2xl font-bold text-blue-900 mt-8 mb-4">3. Baca Secara Teratur</h2>
+                <p>
+                    Membaca adalah nutrisi penting bagi penulis. Bacalah berbagai jenis tulisan untuk memperkaya kosa kata dan memahami berbagai gaya penulisan. Perhatikan bagaimana penulis lain mengembangkan cerita dan karakter mereka.
+                </p>
+
+                <h2 class="text-2xl font-bold text-blue-900 mt-8 mb-4">4. Bergabung dengan Komunitas Penulis</h2>
+                <p>
+                    Berinteraksi dengan penulis lain dapat memberikan motivasi dan masukan berharga. Bergabunglah dengan klub menulis, workshop, atau komunitas online untuk berbagi pengalaman dan mendapatkan umpan balik konstruktif.
+                </p>
+
+                <div class="bg-blue-50 p-6 rounded-xl mt-8 mb-8">
+                    <h3 class="text-xl font-bold text-blue-900 mb-4">Tips Tambahan:</h3>
+                    <ul class="list-disc pl-6 space-y-2">
+                        <li>Gunakan teknik freewriting untuk mengatasi writer's block</li>
+                        <li>Simpan catatan ide untuk referensi di masa depan</li>
+                        <li>Jangan takut untuk merevisi dan mengedit tulisan Anda</li>
+                        <li>Eksplorasi berbagai genre dan gaya penulisan</li>
+                    </ul>
+                </div>
+
+                <p>
+                    Ingatlah bahwa setiap penulis hebat pernah menjadi pemula. Yang terpenting adalah memulai dan terus berlatih. Dengan dedikasi dan kesabaran, Anda akan melihat peningkatan dalam keterampilan menulis Anda seiring waktu.
+                </p>
+            </div>
+
+            <!-- Share Buttons -->
+            <div class="mt-12 pt-8 border-t border-gray-200" data-aos="fade-up">
+                <h3 class="text-xl font-bold text-blue-900 mb-4">Bagikan Artikel</h3>
+                <div class="flex space-x-4">
+                    <a href="#" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300">
+                        <i class="fab fa-facebook-f mr-2"></i> Facebook
+                    </a>
+                    <a href="#" class="px-4 py-2 bg-blue-400 text-white rounded-lg hover:bg-blue-500 transition duration-300">
+                        <i class="fab fa-twitter mr-2"></i> Twitter
+                    </a>
+                    <a href="#" class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-300">
+                        <i class="fab fa-whatsapp mr-2"></i> WhatsApp
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+  <!-- Footer -->
+  <footer class="bg-blue-900 text-white py-16">
+    <div class="container mx-auto px-4">
+        <div class="grid md:grid-cols-4 gap-12">
+            <!-- About Column -->
+            <div class="space-y-6">
+                <h4 class="text-2xl font-bold mb-4">Manonjaya Literasi</h4>
+                <p class="text-gray-300 leading-relaxed">Membangun literasi, menciptakan perubahan untuk Indonesia yang lebih baik melalui program-program inovatif dan berkelanjutan.</p>
+                <div class="flex space-x-4 pt-4">
+                    <a href="#" class="bg-white/10 p-3 rounded-lg hover:bg-yellow-400 hover:text-blue-900 transition duration-300 transform hover:scale-110">
+                        <i class="fab fa-facebook-f text-xl"></i>
+                    </a>
+                    <a href="#" class="bg-white/10 p-3 rounded-lg hover:bg-yellow-400 hover:text-blue-900 transition duration-300 transform hover:scale-110">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                    <a href="#" class="bg-white/10 p-3 rounded-lg hover:bg-yellow-400 hover:text-blue-900 transition duration-300 transform hover:scale-110">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" class="bg-white/10 p-3 rounded-lg hover:bg-yellow-400 hover:text-blue-900 transition duration-300 transform hover:scale-110">
+                        <i class="fab fa-youtube text-xl"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div>
+                <h4 class="text-xl font-bold mb-6">Tautan Cepat</h4>
+                <ul class="space-y-4">
+                    <li><a href="#beranda" class="text-gray-300 hover:text-yellow-400 transition duration-300 flex items-center"><i class="fas fa-chevron-right mr-2 text-sm"></i>Beranda</a></li>
+                    <li><a href="#tentang" class="text-gray-300 hover:text-yellow-400 transition duration-300 flex items-center"><i class="fas fa-chevron-right mr-2 text-sm"></i>Tentang Kami</a></li>
+                    <li><a href="#program" class="text-gray-300 hover:text-yellow-400 transition duration-300 flex items-center"><i class="fas fa-chevron-right mr-2 text-sm"></i>Program</a></li>
+                    <li><a href="#blog" class="text-gray-300 hover:text-yellow-400 transition duration-300 flex items-center"><i class="fas fa-chevron-right mr-2 text-sm"></i>Blog</a></li>
+                    <li><a href="#kontak" class="text-gray-300 hover:text-yellow-400 transition duration-300 flex items-center"><i class="fas fa-chevron-right mr-2 text-sm"></i>Kontak</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div>
+                <h4 class="text-xl font-bold mb-6">Informasi Kontak</h4>
+                <ul class="space-y-4">
+                    <li class="flex items-start space-x-3">
+                        <i class="fas fa-map-marker-alt mt-1 text-yellow-400"></i>
+                        <span class="text-gray-300">Jl. Raya Manonjaya No. 123<br>Tasikmalaya, Jawa Barat 46197</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <i class="fas fa-phone-alt text-yellow-400"></i>
+                        <span class="text-gray-300">+62 123-456-7890</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <i class="fas fa-envelope text-yellow-400"></i>
+                        <span class="text-gray-300">info@manlit.org</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Newsletter -->
+            <div>
+                <h4 class="text-xl font-bold mb-6">Newsletter</h4>
+                <p class="text-gray-300 mb-4">Berlangganan newsletter kami untuk mendapatkan informasi terbaru.</p>
+                <form class="space-y-3">
+                    <div class="relative">
+                        <input type="email" placeholder="Alamat Email" class="w-full px-4 py-3 bg-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 text-white placeholder-gray-400">
+                    </div>
+                    <button type="submit" class="w-full px-4 py-3 bg-yellow-400 text-blue-900 rounded-lg font-semibold hover:bg-yellow-300 transition duration-300 flex items-center justify-center space-x-2">
+                        <i class="fas fa-paper-plane"></i>
+                        <span>Berlangganan</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="border-t border-white/10 mt-12 pt-8">
+            <div class="grid md:grid-cols-2 gap-4 items-center">
+                <p class="text-gray-400 text-center md:text-left">&copy; 2023 Manonjaya Literasi. All rights reserved.</p>
+                <div class="flex justify-center md:justify-end space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-yellow-400 transition duration-300">Kebijakan Privasi</a>
+                    <a href="#" class="text-gray-400 hover:text-yellow-400 transition duration-300">Syarat & Ketentuan</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+    </script>
+</body>
+</html>

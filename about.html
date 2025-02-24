@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Organisasi - Manonjaya Literasi</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Alpine.js -->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <!-- Swiper.js -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    
+    <!-- AOS.js -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <style>
+        :root {
+            --color-primary: #1E3A8A;
+            --color-secondary: #FACC15;
+            --color-light: #F8FAFC;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Merriweather', serif;
+        }
+        
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        
+        .neumorphism {
+            box-shadow: 5px 5px 10px #d1d1d1,
+                       -5px -5px 10px #ffffff;
+        }
+
+        .timeline-item {
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(10px);
+        }
+
+        .org-card {
+            perspective: 1000px;
+            background-color: transparent;
+        }
+
+        .org-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .org-card:hover .org-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .org-card-front, .org-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+        }
+
+        .org-card-back {
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+<body class="bg-slate-50">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-white shadow-md">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="flex items-center space-x-2">
+                    <img src="logo (2).png" alt="Logo" class="h-8">
+                    <span class="text-xl font-bold text-blue-900">Manonjaya Literasi</span>
+                </a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-900">Beranda</a>
+                    <a href="#" class="text-blue-900 font-semibold">Tentang</a>
+                    <a href="program.html" class="text-gray-700 hover:text-blue-900">Program</a>
+                    <a href="blog.html" class="text-gray-700 hover:text-blue-900">Blog</a>
+                    <a href="index.html#kontak" class="text-gray-700 hover:text-blue-900">Kontak</a>
+                </div>
+                <button class="md:hidden text-gray-700" x-data="{ open: false }" @click="open = !open">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 bg-blue-900 relative min-h-[600px] flex items-center">
+        <div class="absolute inset-0">
+            <img src="membaca.jpg" alt="Hero Background" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-blue-900/80"></div>
+        </div>
+        <div class="container mx-auto px-4 relative">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="text-white" data-aos="fade-right">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-6 text-yellow-400">Tentang Kami</h1>
+                    <p class="text-lg text-justify leading-relaxed mb-8">Manonjaya Literasi adalah sebuah organisasi kepemudaan yang berfokus pada pengembangan literasi di kalangan generasi muda. Dengan tujuan utama meningkatkan minat baca, keterampilan menulis, dan pemahaman literasi digital, organisasi ini berusaha memberdayakan pemuda agar lebih kritis dan kreatif dalam menyikapi perkembangan informasi.</p>
+                </div>
+                <div class="flex justify-center" data-aos="fade-left">
+                    <img src="logo (2).png" alt="Manonjaya Literasi Logo" class="w-64 h-64 object-contain filter brightness-0 invert">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- History Timeline Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-12 text-center" data-aos="fade-up">Sejarah Organisasi</h2>
+            
+            <div class="max-w-3xl mx-auto">
+                <!-- Timeline Items -->
+                <div class="relative">
+                    <!-- Timeline Line -->
+                    <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-blue-200"></div>
+
+                    <!-- Timeline Items -->
+                    <div class="timeline-item mb-12" data-aos="fade-right">
+                        <div class="flex items-center">
+                            <div class="w-1/2 pr-8 text-right">
+                                <h3 class="text-xl font-bold text-blue-900 mb-2">2020</h3>
+                                <p class="text-gray-600">Pendirian Manonjaya Literasi sebagai komunitas literasi informal.</p>
+                            </div>
+                            <div class="w-12 h-12 rounded-full bg-blue-900 flex items-center justify-center z-10">
+                                <i class="fas fa-flag text-white"></i>
+                            </div>
+                            <div class="w-1/2 pl-8"></div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item mb-12" data-aos="fade-left">
+                        <div class="flex items-center">
+                            <div class="w-1/2 pr-8"></div>
+                            <div class="w-12 h-12 rounded-full bg-blue-900 flex items-center justify-center z-10">
+                                <i class="fas fa-users text-white"></i>
+                            </div>
+                            <div class="w-1/2 pl-8">
+                                <h3 class="text-xl font-bold text-blue-900 mb-2">2021</h3>
+                                <p class="text-gray-600">Pengembangan program literasi pertama dan pembentukan struktur organisasi.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item mb-12" data-aos="fade-right">
+                        <div class="flex items-center">
+                            <div class="w-1/2 pr-8 text-right">
+                                <h3 class="text-xl font-bold text-blue-900 mb-2">2022</h3>
+                                <p class="text-gray-600">Perluasan program dan kolaborasi dengan berbagai institusi pendidikan.</p>
+                            </div>
+                            <div class="w-12 h-12 rounded-full bg-blue-900 flex items-center justify-center z-10">
+                                <i class="fas fa-handshake text-white"></i>
+                            </div>
+                            <div class="w-1/2 pl-8"></div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item" data-aos="fade-left">
+                        <div class="flex items-center">
+                            <div class="w-1/2 pr-8"></div>
+                            <div class="w-12 h-12 rounded-full bg-blue-900 flex items-center justify-center z-10">
+                                <i class="fas fa-star text-white"></i>
+                            </div>
+                            <div class="w-1/2 pl-8">
+                                <h3 class="text-xl font-bold text-blue-900 mb-2">2023</h3>
+                                <p class="text-gray-600">Pencapaian 1000+ anggota aktif dan pengembangan platform digital.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision & Mission Section -->
+    <section class="py-20 bg-slate-50">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Vision -->
+                <div class="bg-white rounded-xl p-8 neumorphism" data-aos="fade-right">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                            <i class="fas fa-eye text-2xl text-blue-900"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-blue-900">Visi</h3>
+                    </div>
+                    <ul class="space-y-4">
+                        <li class="flex items-start transform transition hover:scale-105">
+                            <i class="fas fa-check-circle text-blue-900 mt-1 mr-3"></i>
+                            <p class="text-gray-600">Menjadi pusat pengembangan literasi yang inovatif dan inspiratif di Indonesia</p>
+                        </li>
+                        <li class="flex items-start transform transition hover:scale-105">
+                            <i class="fas fa-check-circle text-blue-900 mt-1 mr-3"></i>
+                            <p class="text-gray-600">Menciptakan generasi yang cerdas, kritis, dan berbudaya literasi</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Mission -->
+                <div class="bg-white rounded-xl p-8 neumorphism" data-aos="fade-left">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-yellow-100 flex items-center justify-center mr-4">
+                            <i class="fas fa-bullseye text-2xl text-yellow-600"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-blue-900">Misi</h3>
+                    </div>
+                    <ul class="space-y-4">
+                        <li class="flex items-start transform transition hover:scale-105">
+                            <i class="fas fa-check-circle text-yellow-600 mt-1 mr-3"></i>
+                            <p class="text-gray-600">Mengembangkan program literasi yang kreatif dan berkelanjutan</p>
+                        </li>
+                        <li class="flex items-start transform transition hover:scale-105">
+                            <i class="fas fa-check-circle text-yellow-600 mt-1 mr-3"></i>
+                            <p class="text-gray-600">Membangun kolaborasi dengan berbagai pihak untuk pengembangan literasi</p>
+                        </li>
+                        <li class="flex items-start transform transition hover:scale-105">
+                            <i class="fas fa-check-circle text-yellow-600 mt-1 mr-3"></i>
+                            <p class="text-gray-600">Memberikan akses pendidikan literasi yang berkualitas untuk semua kalangan</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Organization Structure Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-12 text-center" data-aos="fade-up">Struktur Kepengurusan</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Org Card 1 -->
+                <div class="org-card h-64" data-aos="fade-up">
+                    <div class="org-card-inner h-full">
+                        <div class="org-card-front bg-white rounded-xl p-6 neumorphism flex flex-col items-center justify-center">
+                            <img src="https://i.pravatar.cc/150?img=11" alt="Ketua" class="w-24 h-24 rounded-full mb-4">
+                            <h4 class="font-bold text-blue-900">Ahmad Fauzi</h4>
+                            <p class="text-gray-600">Ketua</p>
+                        </div>
+                        <div class="org-card-back bg-white rounded-xl p-6 neumorphism flex flex-col items-center justify-center">
+                            <p class="text-gray-600 text-center">"Bersama membangun budaya literasi untuk Indonesia yang lebih baik"</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Org Card 2 -->
+                <div class="org-card h-64" data-aos="fade-up" data-aos-delay="100">
+                    <div class="org-card-inner h-full">
+                        <div class="org-card-front bg-white rounded-xl p-6 neumorphism flex flex-col items-center justify-center">
+                            <img src="https://i.pravatar.cc/150?img=12" alt="Wakil Ketua" class="w-24 h-24 rounded-full mb-4">
+                            <h4 class="font-bold text-blue-900">Sarah Amalia</h4>
+                            <p class="text-gray-600">Wakil Ketua</p>
+                        </div>
+                        <div class="org-card-back bg-white rounded-xl p-6 neumorphism flex flex-col items-center justify-center">
+                            <p class="text-gray-600 text-center">"Literasi adalah kunci untuk membuka pintu kesuksesan"</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Org Card 3 -->
+                <div class="org-card h-64" data-aos="fade-up" data-aos-delay="200">
+                    <div class="org-card-inner h-full">
+                        <div class="org-card-front bg-white rounded-xl p-6 neumorphism flex flex-col items-center justify-center">
+                            <img src="https://i.pravatar.cc/150?img=13" alt="Sekretaris" class="w-24 h-24 rounded-full mb-4">
+                            <h4 class="font-bold text-blue-900">Dian Pratiwi</h4>
+                            <p class="text-gray-600">Sekretaris</p>
+                        </div>
+                        <div class="org-card-back bg-white rounded-xl p-6 neumorphism flex flex-col items-center justify-center">
+                            <p class="text-gray-600 text-center">"Administrasi yang baik adalah fondasi organisasi yang kuat"</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Org Card 4 -->
+                <div class="org-card h-64" data-aos="fade-up" data-aos-delay="300">
+                    <div class="org-card-inner h-full">
+                        <div class="org-card-front bg-white rounded-xl p-6 neumorphism flex flex-col items-center justify-center">
+                            <img src="https://i.pravatar.cc/150?img=14" alt="Bendahara" class="w-24 h-24 rounded-full mb-4">
+                            <h4 class="font-bold text-blue-900">Rizki Ramadhan</h4>
+                            <p class="text-gray-600">Bendahara</p>
+                        </div>
+                        <div class="org-card-back bg-white rounded-xl p-6 neumorphism flex flex-col items-center justify-center">
+                            <p class="text-gray-600 text-center">"Pengelolaan keuangan yang transparan untuk kemajuan bersama"</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Divisi Cards -->
+                <!-- Divisi Program -->                
+                <div class="org-card h-64" data-aos="fade-up" data-aos-delay="400">
+                    <div class="org-card-inner h-full">
+                        <div class="org-card-front bg-white rounded-xl p-6 neumorphism flex flex-col items-center justify-center">
+                            <img src="https://i.pravatar.cc/150?img=15" alt="Kepala Divisi Program" class="w-24 h-24 rounded-full mb-4">
+                            <h4 class="font-bold text-blue-900">Andi Pratama</h4>
+                            <p class="text-gray-600">Kepala Divisi Program</p>
+                        </div>
+                        <div class="org-card-back bg-white rounded-xl p-6 neumorphism flex flex-col items-center justify-center">
+                            <p class="text-gray-600 text-center">"Mengembangkan program literasi yang inovatif dan berdampak"</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Divisi Media -->                
+                <div class="org-card h-64" data-aos="fade-up" data-aos-delay="500">
+                    <div class="org-card-inner h-full">
+                        <div class="org-card-front bg-white rounded-xl p-6 neumorphism flex flex-col items-center justify-center">
+                            <img src="https://i.pravatar.cc/150?img=16" alt="Kepala Divisi Media" class="w-24 h-24 rounded-full mb-4">
+                            <h4 class="font-bold text-blue-900">Maya Putri</h4>
+                            <p class="text-gray-600">Kepala Divisi Media</p>
+                        </div>
+                        <div class="org-card-back bg-white rounded-xl p-6 neumorphism flex flex-col items-center justify-center">
+                            <p class="text-gray-600 text-center">"Menyebarkan informasi literasi melalui media yang kreatif"</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Divisi Humas -->                
+                <div class="org-card h-64" data-aos="fade-up" data-aos-delay="600">
+                    <div class="org-card-inner h-full">
+                        <div class="org-card-front bg-white rounded-xl p-6 neumorphism flex flex-col items-center justify-center">
+                            <img src="https://i.pravatar.cc/150?img=17" alt="Kepala Divisi Humas" class="w-24 h-24 rounded-full mb-4">
+                            <h4 class="font-bold text-blue-900">Budi Santoso</h4>
+                            <p class="text-gray-600">Kepala Divisi Humas</p>
+                        </div>
+                        <div class="org-card-back bg-white rounded-xl p-6 neumorphism flex flex-col items-center justify-center">
+                            <p class="text-gray-600 text-center">"Membangun hubungan baik dengan masyarakat dan mitra"</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Divisi Pengembangan SDM -->                
+                <div class="org-card h-64" data-aos="fade-up" data-aos-delay="700">
+                    <div class="org-card-inner h-full">
+                        <div class="org-card-front bg-white rounded-xl p-6 neumorphism flex flex-col items-center justify-center">
+                            <img src="https://i.pravatar.cc/150?img=18" alt="Kepala Divisi Pengembangan SDM" class="w-24 h-24 rounded-full mb-4">
+                            <h4 class="font-bold text-blue-900">Siti Rahma</h4>
+                            <p class="text-gray-600">Kepala Divisi SDM</p>
+                        </div>
+                        <div class="org-card-back bg-white rounded-xl p-6 neumorphism flex flex-col items-center justify-center">
+                            <p class="text-gray-600 text-center">"Mengembangkan potensi anggota untuk kemajuan organisasi"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-white py-16">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-12">
+                <!-- About Column -->
+                <div class="space-y-6">
+                    <h4 class="text-2xl font-bold mb-4">Manonjaya Literasi</h4>
+                    <p class="text-gray-300 leading-relaxed">Membangun literasi, menciptakan perubahan untuk Indonesia yang lebih baik melalui program-program inovatif dan berkelanjutan.</p>
+                    <div class="flex space-x-4 pt-4">
+                        <a href="#" class="bg-white/10 p-3 rounded-lg hover:bg-yellow-400 hover:text-blue-900 transition duration-300 transform hover:scale-110">
+                            <i class="fab fa-facebook-f text-xl"></i>
+                        </a>
+                        <a href="#" class="bg-white/10 p-3 rounded-lg hover:bg-yellow-400 hover:text-blue-900 transition duration-300 transform hover:scale-110">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="bg-white/10 p-3 rounded-lg hover:bg-yellow-400 hover:text-blue-900 transition duration-300 transform hover:scale-110">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="bg-white/10 p-3 rounded-lg hover:bg-yellow-400 hover:text-blue-900 transition duration-300 transform hover:scale-110">
+                            <i class="fab fa-youtube text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Tautan Cepat</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#beranda" class="text-gray-300 hover:text-yellow-400 transition duration-300 flex items-center"><i class="fas fa-chevron-right mr-2 text-sm"></i>Beranda</a></li>
+                        <li><a href="#tentang" class="text-gray-300 hover:text-yellow-400 transition duration-300 flex items-center"><i class="fas fa-chevron-right mr-2 text-sm"></i>Tentang Kami</a></li>
+                        <li><a href="#program" class="text-gray-300 hover:text-yellow-400 transition duration-300 flex items-center"><i class="fas fa-chevron-right mr-2 text-sm"></i>Program</a></li>
+                        <li><a href="#blog" class="text-gray-300 hover:text-yellow-400 transition duration-300 flex items-center"><i class="fas fa-chevron-right mr-2 text-sm"></i>Blog</a></li>
+                        <li><a href="#kontak" class="text-gray-300 hover:text-yellow-400 transition duration-300 flex items-center"><i class="fas fa-chevron-right mr-2 text-sm"></i>Kontak</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Informasi Kontak</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-map-marker-alt mt-1 text-yellow-400"></i>
+                            <span class="text-gray-300">Jl. Raya Manonjaya No. 123<br>Tasikmalaya, Jawa Barat 46197</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-phone-alt text-yellow-400"></i>
+                            <span class="text-gray-300">+62 123-456-7890</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-envelope text-yellow-400"></i>
+                            <span class="text-gray-300">info@manlit.org</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Newsletter</h4>
+                    <p class="text-gray-300 mb-4">Berlangganan newsletter kami untuk mendapatkan informasi terbaru.</p>
+                    <form class="space-y-3">
+                        <div class="relative">
+                            <input type="email" placeholder="Alamat Email" class="w-full px-4 py-3 bg-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 text-white placeholder-gray-400">
+                        </div>
+                        <button type="submit" class="w-full px-4 py-3 bg-yellow-400 text-blue-900 rounded-lg font-semibold hover:bg-yellow-300 transition duration-300 flex items-center justify-center space-x-2">
+                            <i class="fas fa-paper-plane"></i>
+                            <span>Berlangganan</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="border-t border-white/10 mt-12 pt-8">
+                <div class="grid md:grid-cols-2 gap-4 items-center">
+                    <p class="text-gray-400 text-center md:text-left">&copy; 2023 Manonjaya Literasi. All rights reserved.</p>
+                    <div class="flex justify-center md:justify-end space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-yellow-400 transition duration-300">Kebijakan Privasi</a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-400 transition duration-300">Syarat & Ketentuan</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        AOS.init({
+            duration: 1000,
+            easing: 'ease-in-out',
+            once: true
+        });
+    </script>
+</body>
+</html>

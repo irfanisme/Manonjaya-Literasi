@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event & Kegiatan - Manonjaya Literasi</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <style>
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        
+        .neumorphism {
+            box-shadow: 5px 5px 10px #d1d1d1,
+                       -5px -5px 10px #ffffff;
+        }
+
+        /* Floating Label Effect */
+        .form-floating {
+            position: relative;
+        }
+
+        .form-floating input,
+        .form-floating textarea,
+        .form-floating select {
+            height: 3.5rem;
+            padding: 1.25rem 0.75rem 0.5rem;
+            width: 100%;
+            font-size: 1rem;
+            line-height: 1.25;
+            border-radius: 0.5rem;
+            border: 1px solid #CBD5E1;
+            background-color: #F8FAFC;
+            color: #1E293B;
+            font-weight: 500;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .form-floating textarea {
+            min-height: 8rem;
+            resize: vertical;
+            padding-top: 1.75rem;
+        }
+
+        .form-floating label {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            padding: 1rem 0.75rem;
+            pointer-events: none;
+            transform-origin: 0 0;
+            transition: all 0.2s ease-in-out;
+            color: #64748B;
+            font-weight: 500;
+            z-index: 3;
+        }
+
+        .form-floating input:focus ~ label,
+        .form-floating input:not(:placeholder-shown) ~ label,
+        .form-floating textarea:focus ~ label,
+        .form-floating textarea:not(:placeholder-shown) ~ label,
+        .form-floating select:focus ~ label,
+        .form-floating select:not(:placeholder-shown) ~ label {
+            opacity: 1;
+            transform: scale(.85) translateY(-1.25rem) translateX(0.15rem);
+            background-color: transparent;
+            padding: 0 0.5rem;
+            color: #1E40AF;
+            font-weight: 600;
+            z-index: 3;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #3B82F6;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+            background-color: #FFFFFF;
+        }
+
+        /* Ripple Effect */
+        .ripple {
+            position: relative;
+            overflow: hidden;
+            transform: translate3d(0, 0, 0);
+        }
+
+        .ripple:after {
+            content: "";
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+            background-repeat: no-repeat;
+            background-position: 50%;
+            transform: scale(10, 10);
+            opacity: 0;
+            transition: transform .5s, opacity 1s;
+        }
+
+        .ripple:active:after {
+            transform: scale(0, 0);
+            opacity: .3;
+            transition: 0s;
+        }
+
+        /* Calendar Styles */
+        .flatpickr-calendar {
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            padding: 2rem;
+            width: 100% !important;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        .flatpickr-months {
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0;
+        }
+
+        .flatpickr-month {
+            height: 40px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .flatpickr-current-month {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1E3A8A;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .flatpickr-weekdays {
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .flatpickr-weekday {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #4B5563;
+            width: calc(100% / 7);
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .flatpickr-days {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 4px;
+        }
+
+        .flatpickr-day {
+            border-radius: 10px;
+            margin: 2px;
+            height: 40px;
+            line-height: 40px;
+            font-size: 1rem;
+            width: calc(100% / 7 - 4px);
+            flex: 0 0 calc(100% / 7 - 4px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .flatpickr-day.has-event {
+            background-color: #EFF6FF;
+            border: 2px solid #3B82F6;
+            color: #1E40AF;
+            font-weight: 600;
+        }
+
+        .flatpickr-day.has-event:hover,
+        .flatpickr-day.has-event.selected {
+            background-color: #3B82F6;
+            border-color: #3B82F6;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .flatpickr-day.today {
+            border: 2px solid #3B82F6;
+            font-weight: 600;
+        }
+
+        .flatpickr-day.selected {
+            background-color: #3B82F6;
+            color: white;
+            font-weight: 600;
+        }
+
+        .flatpickr-day:hover:not(.has-event) {
+            background-color: #F3F4F6;
+            transform: scale(1.1);
+        }
+
+        .event-details {
+            transition: all 0.3s ease;
+            height: 100%;
+            background: #fff;
+            border-radius: 15px;
+            padding: 1.5rem;
+        }
+
+        .event-image {
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .event-image img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .event-image:hover img {
+            transform: scale(1.08);
+        }
+
+        #eventTitle {
+            font-size: 1.75rem;
+            color: #1E3A8A;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        #eventDate {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            background: #EFF6FF;
+            border-radius: 8px;
+            color: #1E40AF;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        #eventDescription {
+            color: #4B5563;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        #noEventMessage {
+            padding: 3rem;
+            text-align: center;
+            color: #6B7280;
+        }
+
+        #noEventMessage i {
+            font-size: 3rem;
+            color: #93C5FD;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .event-tooltip {
+            background: #1E3A8A;
+            color: white;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body class="bg-slate-50">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-white shadow-md">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="flex items-center space-x-2">
+                    <img src="logo (2).png" alt="Logo" class="h-8">
+                    <span class="text-xl font-bold text-blue-900">Manonjaya Literasi</span>
+                </a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-900">Beranda</a>
+                    <a href="about.html" class="text-gray-700 hover:text-blue-900">Tentang</a>
+                    <a href="program.html" class="text-blue-900 font-semibold">Program</a>
+                    <a href="blog.html" class="text-gray-700 hover:text-blue-900">Blog</a>
+                    <a href="kontak.html" class="text-gray-700 hover:text-blue-900">Kontak</a>
+                </div>
+                <div x-data="{ open: false }" class="md:hidden">
+                    <button @click="open = !open" class="text-gray-700">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                    <div x-show="open" @click.away="open = false" class="absolute top-full right-0 w-48 py-2 mt-2 bg-white rounded-lg shadow-xl">
+                        <a href="index.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">Beranda</a>
+                        <a href="about.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">Tentang</a>
+                        <a href="program.html" class="block px-4 py-2 text-blue-900 font-semibold">Program</a>
+                        <a href="blog.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">Blog</a>
+                        <a href="kontak.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">Kontak</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 bg-gradient-to-br from-blue-900 to-blue-800 text-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center" data-aos="fade-up">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Event & Kegiatan</h1>
+                <p class="text-xl text-blue-100">Jadilah bagian dari perubahan melalui program-program kami</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calendar Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12" data-aos="fade-up">
+                    <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-4">Kalender Kegiatan</h2>
+                    <p class="text-gray-600">Jelajahi berbagai kegiatan menarik yang akan datang</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-white p-6 rounded-xl neumorphism" data-aos="fade-up">
+                        <div id="calendar" class="w-full"></div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl neumorphism" data-aos="fade-up">
+                        <div id="eventDetails" class="hidden space-y-6">
+                            <div id="eventImage"></div>
+                            <div class="bg-white p-6 rounded-xl neumorphism">
+                                <h3 class="text-2xl font-bold text-blue-900 mb-4" id="eventTitle"></h3>
+                                <div class="flex items-center text-gray-600 mb-4">
+                                    <i class="far fa-calendar-alt mr-2"></i>
+                                    <span id="eventDate"></span>
+                                </div>
+                                <p class="text-gray-600 mb-6" id="eventDescription"></p>
+                                <a href="#registrationForm" class="inline-block px-6 py-3 bg-blue-900 text-white rounded-lg font-semibold hover:bg-blue-800 transition duration-300 ripple">
+                                    Daftar Sekarang
+                                </a>
+                            </div>
+                        </div>
+                        <div id="noEventMessage" class="text-center text-gray-500 py-8">
+                            <i class="far fa-calendar-check text-4xl mb-4"></i>
+                            <p>Pilih tanggal untuk melihat detail kegiatan</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Form Section -->
+    <section class="py-20 bg-slate-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-2xl mx-auto">
+                <div class="text-center mb-12" data-aos="fade-up">
+                    <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-4">Formulir Pendaftaran</h2>
+                    <p class="text-gray-600">Daftar untuk mengikuti kegiatan kami</p>
+                </div>
+
+                <form id="registrationForm" class="bg-white p-8 rounded-xl neumorphism" data-aos="fade-up">
+                    <div class="space-y-6">
+                        <div class="form-floating">
+                            <input type="text" id="nama" name="nama" class="form-control" placeholder=" " required>
+                            <label for="nama">Nama Lengkap</label>
+                        </div>
+
+                        <div class="form-floating">
+                            <input type="email" id="email" name="email" class="form-control" placeholder=" " required>
+                            <label for="email">Alamat Email</label>
+                        </div>
+
+                        <div class="form-floating">
+                            <input type="tel" id="telepon" name="telepon" class="form-control" placeholder=" " required>
+                            <label for="telepon">Nomor Telepon</label>
+                        </div>
+
+                        <div class="form-floating">
+                            <select id="event" name="event" class="form-control" required>
+                                <option value="">Pilih Event</option>
+                                <option value="workshop">Workshop Literasi</option>
+                                <option value="debat">Debat Literasi</option>
+                                <option value="festival">Festival Puisi</option>
+                            </select>
+                            <label for="event">Pilih Event</label>
+                        </div>
+
+                        <div class="form-floating">
+                            <textarea id="pesan" name="pesan" class="form-control h-32" placeholder=" "></textarea>
+                            <label for="pesan">Pesan (Opsional)</label>
+                        </div>
+
+                        <button type="submit" class="w-full px-6 py-3 bg-blue-900 text-white rounded-lg font-semibold hover:bg-blue-800 transition duration-300 ripple">
+                            Daftar Sekarang
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+  <!-- Footer -->
+  <footer class="bg-blue-900 text-white py-16">
+    <div class="container mx-auto px-4">
+        <div class="grid md:grid-cols-4 gap-12">
+            <!-- About Column -->
+            <div class="space-y-6">
+                <h4 class="text-2xl font-bold mb-4">Manonjaya Literasi</h4>
+                <p class="text-gray-300 leading-relaxed">Membangun literasi, menciptakan perubahan untuk Indonesia yang lebih baik melalui program-program inovatif dan berkelanjutan.</p>
+                <div class="flex space-x-4 pt-4">
+                    <a href="#" class="bg-white/10 p-3 rounded-lg hover:bg-yellow-400 hover:text-blue-900 transition duration-300 transform hover:scale-110">
+                        <i class="fab fa-facebook-f text-xl"></i>
+                    </a>
+                    <a href="#" class="bg-white/10 p-3 rounded-lg hover:bg-yellow-400 hover:text-blue-900 transition duration-300 transform hover:scale-110">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                    <a href="#" class="bg-white/10 p-3 rounded-lg hover:bg-yellow-400 hover:text-blue-900 transition duration-300 transform hover:scale-110">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" class="bg-white/10 p-3 rounded-lg hover:bg-yellow-400 hover:text-blue-900 transition duration-300 transform hover:scale-110">
+                        <i class="fab fa-youtube text-xl"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div>
+                <h4 class="text-xl font-bold mb-6">Tautan Cepat</h4>
+                <ul class="space-y-4">
+                    <li><a href="#beranda" class="text-gray-300 hover:text-yellow-400 transition duration-300 flex items-center"><i class="fas fa-chevron-right mr-2 text-sm"></i>Beranda</a></li>
+                    <li><a href="#tentang" class="text-gray-300 hover:text-yellow-400 transition duration-300 flex items-center"><i class="fas fa-chevron-right mr-2 text-sm"></i>Tentang Kami</a></li>
+                    <li><a href="#program" class="text-gray-300 hover:text-yellow-400 transition duration-300 flex items-center"><i class="fas fa-chevron-right mr-2 text-sm"></i>Program</a></li>
+                    <li><a href="#blog" class="text-gray-300 hover:text-yellow-400 transition duration-300 flex items-center"><i class="fas fa-chevron-right mr-2 text-sm"></i>Blog</a></li>
+                    <li><a href="#kontak" class="text-gray-300 hover:text-yellow-400 transition duration-300 flex items-center"><i class="fas fa-chevron-right mr-2 text-sm"></i>Kontak</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div>
+                <h4 class="text-xl font-bold mb-6">Informasi Kontak</h4>
+                <ul class="space-y-4">
+                    <li class="flex items-start space-x-3">
+                        <i class="fas fa-map-marker-alt mt-1 text-yellow-400"></i>
+                        <span class="text-gray-300">Jl. Raya Manonjaya No. 123<br>Tasikmalaya, Jawa Barat 46197</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <i class="fas fa-phone-alt text-yellow-400"></i>
+                        <span class="text-gray-300">+62 123-456-7890</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <i class="fas fa-envelope text-yellow-400"></i>
+                        <span class="text-gray-300">info@manlit.org</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Newsletter -->
+            <div>
+                <h4 class="text-xl font-bold mb-6">Newsletter</h4>
+                <p class="text-gray-300 mb-4">Berlangganan newsletter kami untuk mendapatkan informasi terbaru.</p>
+                <form class="space-y-3">
+                    <div class="relative">
+                        <input type="email" placeholder="Alamat Email" class="w-full px-4 py-3 bg-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 text-white placeholder-gray-400">
+                    </div>
+                    <button type="submit" class="w-full px-4 py-3 bg-yellow-400 text-blue-900 rounded-lg font-semibold hover:bg-yellow-300 transition duration-300 flex items-center justify-center space-x-2">
+                        <i class="fas fa-paper-plane"></i>
+                        <span>Berlangganan</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="border-t border-white/10 mt-12 pt-8">
+            <div class="grid md:grid-cols-2 gap-4 items-center">
+                <p class="text-gray-400 text-center md:text-left">&copy; 2023 Manonjaya Literasi. All rights reserved.</p>
+                <div class="flex justify-center md:justify-end space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-yellow-400 transition duration-300">Kebijakan Privasi</a>
+                    <a href="#" class="text-gray-400 hover:text-yellow-400 transition duration-300">Syarat & Ketentuan</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Calendar Events Data
+        const events = [
+            {
+                date: '2024-01-15',
+                title: 'Workshop Literasi',
+                description: 'Workshop penulisan kreatif untuk pemula yang akan membantu Anda mengembangkan keterampilan menulis dan mengekspresikan ide-ide kreatif Anda.',
+                image: 'workshop.jpg'
+            },
+            {
+                date: '2024-01-20',
+                title: 'Debat Literasi',
+                description: 'Kompetisi debat literasi antar sekolah untuk meningkatkan kemampuan berpikir kritis dan berkomunikasi para siswa.',
+                image: 'debat.jpg'
+            },
+            {
+                date: '2024-01-25',
+                title: 'Festival Puisi',
+                description: 'Festival puisi dan pembacaan karya yang akan menampilkan berbagai karya puisi dari penulis lokal dan nasional.',
+                image: 'puisi.jpg'
+            },
+            {
+                date: '2025-01-15',
+                title: 'Workshop Literasi',
+                description: 'Workshop penulisan kreatif untuk pemula yang akan membantu Anda mengembangkan keterampilan menulis dan mengekspresikan ide-ide kreatif Anda.',
+                image: 'workshop.jpg'
+            },
+            {
+                date: '2025-01-20',
+                title: 'Debat Literasi',
+                description: 'Kompetisi debat literasi antar sekolah untuk meningkatkan kemampuan berpikir kritis dan berkomunikasi para siswa.',
+                image: 'debat.jpg'
+            },
+            {
+                date: '2025-01-25',
+                title: 'Festival Puisi',
+                description: 'Festival puisi dan pembacaan karya yang akan menampilkan berbagai karya puisi dari penulis lokal dan nasional.',
+                image: 'puisi.jpg'
+            }
+        ];
+
+        // Initialize Calendar
+        const calendar = flatpickr('#calendar', {
+            inline: true,
+            mode: 'single',
+            dateFormat: 'Y-m-d',
+            defaultDate: 'today',
+            showMonths: 1,
+            locale: {
+                firstDayOfWeek: 1
+            },
+            onDayCreate: function(dObj, dStr, fp, dayElem) {
+                const date = dayElem.dateObj;
+                const dateStr = flatpickr.formatDate(date, 'Y-m-d');
+                const event = events.find(e => e.date === dateStr);
+                
+                if (event) {
+                    dayElem.classList.add('has-event');
+                }
+            },
+            onChange: function(selectedDates, dateStr) {
+                const event = events.find(e => e.date === dateStr);
+                const eventDetails = document.getElementById('eventDetails');
+                const noEventMessage = document.getElementById('noEventMessage');
+                const eventTitle = document.getElementById('eventTitle');
+                const eventDate = document.getElementById('eventDate');
+                const eventDescription = document.getElementById('eventDescription');
+                const eventImageContainer = document.getElementById('eventImage');
+
+                if (event) {
+                    eventTitle.textContent = event.title;
+                    eventDate.textContent = new Date(event.date).toLocaleDateString('id-ID', { 
+                        weekday: 'long', 
+                        year: 'numeric', 
+                        month: 'long', 
+                        day: 'numeric' 
+                    });
+                    eventDescription.textContent = event.description;
+                    eventImageContainer.innerHTML = `
+                        <div class="event-image">
+                            <img src="${event.image}" alt="${event.title}" class="w-full">
+                        </div>
+                    `;
+                    eventDetails.classList.remove('hidden');
+                    noEventMessage.classList.add('hidden');
+                } else {
+                    eventDetails.classList.add('hidden');
+                    noEventMessage.classList.remove('hidden');
+                }
+            }
+        });
+
+        // Form Submission
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+            
+            // Here you would typically send the data to your server
+            console.log('Form submitted:', data);
+            
+            // Show success message
+            alert('Pendaftaran berhasil! Kami akan menghubungi Anda segera.');
+            
+            // Reset form
+            this.reset();
+        });
+    </script>
+</body>
+</html>
